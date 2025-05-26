@@ -1,0 +1,14 @@
+.DS_Store
+nph
+build/*
+/.update.timestamp
+
+# Nimbus Build System
+nimbus-build-system.paths
+
+# Nimble packages
+/vendor/.nimble
+nimcache
+
+# a symlink that can't be added to the repo because of Windows
+/clock.nims
