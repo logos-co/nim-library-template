@@ -17,7 +17,7 @@
 * nimcache/release/libclock/libclock.h
 */
 
-// TODO: change clock for your library's name
+// TODO: change clock with your library's name
 #ifndef __libclock__
 #define __libclock__
 
@@ -36,7 +36,7 @@ extern "C" {
 // TODO: change ClockCallback to <YourLibraryName>Callback
 typedef void (*ClockCallBack) (int callerRet, const char* msg, size_t len, void* userData);
 
-// TODO: replace the clock functions for your library's functions
+// TODO: replace the clock functions with your library's functions
 // TODO: replace the ClockCallBack parameter for <YourLibraryName>Callback
 void* clock_new(ClockCallBack callback,
              void* userData);
@@ -63,5 +63,5 @@ int clock_list_alarms(void* ctx,
 }
 #endif
 
-// TODO: change clock for your library's name
+// TODO: change clock with your library's name
 #endif /* __libclock__ */
