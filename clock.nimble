@@ -29,3 +29,7 @@ proc buildLibrary(name: string, srcDir = "./", params = "", `type` = "static") =
 task libclockDynamic, "Generate bindings":
   let name = "libclock"
   buildLibrary name, "library/", "", "dynamic"
+
+task libclockStatic, "Generate bindings":
+  let name = "libclock"
+  buildLibrary name, "library/", "", "static"
