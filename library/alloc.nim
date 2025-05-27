@@ -35,11 +35,11 @@ proc allocSharedSeq*[T](s: seq[T]): SharedSeq[T] =
   return (cast[ptr UncheckedArray[T]](data), s.len)
 
 proc deallocSharedSeq*[T](s: var SharedSeq[T]) =
-  if not s.data.isNil:
+  if not s.data.isNil():
     when T is cstring:
       # For array of cstrings, deallocate each string first
       for i in 0 ..< s.len:
-        if not s.data[i].isNil:
+        if not s.data[i].isNil():
           # Deallocate each cstring
           deallocShared(s.data[i])
 
@@ -58,7 +58,7 @@ proc allocSharedSeqFromCArray*[T](arr: ptr T, len: int): SharedSeq[T] =
   ## Creates a SharedSeq[T] from a C array pointer and length.
   ## The data is copied to shared memory.
   ## There should be a corresponding manual deallocation with deallocSharedSeq!
-  if arr.isNil or len <= 0:
+  if arr.isNil() or len <= 0:
     return (nil, 0)
 
   when T is cstring:

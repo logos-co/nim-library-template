@@ -6,11 +6,11 @@
 #
 # IMPLEMENTATION STEPS:
 # 1. Rename this file to `<your_library_name>_thread.nim`
-# 2. Remove Clock related imports and replace it with your library's equivalents
+# 2. Remove Clock related imports and replace them with your library's equivalents
 # 3. Rename `runClock` proc and adapt it to your library's types
 # 4. Replace all instances of the word "clock" for your library's name, so that both the
 #    types match your library's and the comments make sense.
-#    It's recommended to replace "Clock" for YourLibrary and "clock" for yourLibrary, so
+#    It's recommended to replace "Clock" with YourLibrary and "clock" for yourLibrary, so
 #    capitalization structures are preserved
 #
 # See additional TODO comments throughout the file for specific guidance.
