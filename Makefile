@@ -1,4 +1,7 @@
-.PHONY: libclock
+# Adapt it to the name of your library
+MY_LIB_NAME := clock
+
+.PHONY: lib$(MY_LIB_NAME)
 
 export BUILD_SYSTEM_DIR := vendor/nimbus-build-system
 # we don't want an error here, so we can handle things later, in the ".DEFAULT" target
@@ -20,19 +23,19 @@ GIT_SUBMODULE_UPDATE := git submodule update --init --recursive
 else # "variables.mk" was included. Business as usual until the end of this file.
 
 # default target, because it's the first one that doesn't start with '.'
-all: | libclock
+all: | lib$(MY_LIB_NAME)
 
-clock.nims:
-	ln -s clock.nimble $@
+$(MY_LIB_NAME).nims:
+	ln -s $(MY_LIB_NAME).nimble $@
 
 update: | update-common
-	rm -rf clock.nims && \
-		$(MAKE) clock.nims $(HANDLE_OUTPUT)
+	rm -rf $(MY_LIB_NAME).nims && \
+		$(MAKE) $(MY_LIB_NAME).nims $(HANDLE_OUTPUT)
 
 clean:
 	rm -rf build
 
-deps: | clock.nims
+deps: | $(MY_LIB_NAME).nims
 
 # must be included after the default target
 -include $(BUILD_SYSTEM_DIR)/makefiles/targets.mk
@@ -45,13 +48,13 @@ endif
 
 STATIC ?= 0
 
-libclock: deps
-		rm -f build/libclock*
+lib$(MY_LIB_NAME): deps
+		rm -f build/lib$(MY_LIB_NAME)*
 ifeq ($(STATIC), 1)
 		echo -e $(BUILD_MSG) "build/$@.a" && \
-		$(ENV_SCRIPT) nim libclockStatic $(NIM_PARAMS) clock.nims
+		$(ENV_SCRIPT) nim lib$(MY_LIB_NAME)Static $(NIM_PARAMS) $(MY_LIB_NAME).nims
 else
 		echo -e $(BUILD_MSG) "build/$@.so" && \
-		$(ENV_SCRIPT) nim libclockDynamic $(NIM_PARAMS) clock.nims
+		$(ENV_SCRIPT) nim lib$(MY_LIB_NAME)Dynamic $(NIM_PARAMS) $(MY_LIB_NAME).nims
 endif
 endif
