@@ -7,7 +7,8 @@
 * 1. Rename this file to `lib<your_library_name>.h`
 * 2. Replace "clock" in all function names with your library name
 * 3. Rename the ClockCallBack type to <YourLibraryName>Callback
-* 4. Replace the clock functions with your library's specific functions
+* 4. Replace the clock functions with your library's specific functions. Make sure that your function
+    names start with <your_library_name> as a prefix
 * 5. Update the header guards to match your library name
 *
 * See additional TODO comments throughout the file for specific guidance.
@@ -37,6 +38,7 @@ extern "C" {
 typedef void (*ClockCallBack) (int callerRet, const char* msg, size_t len, void* userData);
 
 // TODO: replace the clock functions with your library's functions
+// TODO: replace the clock prefix for <your_library_name>
 // TODO: replace the ClockCallBack parameter for <YourLibraryName>Callback
 void* clock_new(ClockCallBack callback,
              void* userData);
