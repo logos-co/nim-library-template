@@ -43,7 +43,7 @@ proc deallocSharedSeq*[T](s: var SharedSeq[T]) =
           # Deallocate each cstring
           deallocShared(s.data[i])
 
-  deallocShared(s.data)
+    deallocShared(s.data)
   s.len = 0
 
 proc toSeq*[T](s: SharedSeq[T]): seq[T] =
