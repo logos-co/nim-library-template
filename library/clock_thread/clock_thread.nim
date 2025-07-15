@@ -58,12 +58,12 @@ proc runClock(ctx: ptr ClockContext) {.async.} =
       error "clock thread could not receive a request"
       continue
 
+    ## Handle the request
+    asyncSpawn ClockThreadRequest.process(request, addr clock)
+
     let fireRes = ctx.reqReceivedSignal.fireSync()
     if fireRes.isErr():
       error "could not fireSync back to requester thread", error = fireRes.error
-
-    ## Handle the request
-    asyncSpawn ClockThreadRequest.process(request, addr clock)
 
 # Thread entrypoint wrapper to start the async runClock loop
 proc run(ctx: ptr ClockContext) {.thread.} =
